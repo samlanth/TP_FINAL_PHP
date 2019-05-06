@@ -49,45 +49,43 @@
 <html>
 <head>
 	<title>Register</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="style_signup.css">
 </head>
 <body>
-<div class="header">
-	<h1>Register</h1>
+<div class="cachecache">
+   <div class="grid-template">
+    <div class="header">
+    <img src="Images/Logo.png" id="logo">
+    </div>
+    <div class="header">
+    </div>
+    <div class="header">
+    </div>
+  </div>
+  <div class="grid-template">
+    <div class="main">
+    </div>
+    <div>
+	<h2 class="infos" align="middle">Inscription</h2>
+      <div style="height:100%;">
+	  <form method="post" action="signup.php">
+        <input placeholder="Nom" type="text" name="nom" class="infos"><br>
+        <input placeholder="Prenom" type="text" name="prenom" class="infos"><br>
+        <input placeholder="Username" type="text" name="username" class="infos"> <br>
+        <input placeholder="Password" type="text" name="password" class="infos"><br>
+        <input placeholder="Confirmation password" type="text" name="password2" class="infos"><br>
+        <input placeholder="Email" type="text" name="email" class="infos"><br>
+        <button class="infos" type="submit" name="register_btn">S'inscrire</button>
+		</form>
+      </div>
+    </div>
+    <div class="main">
+    </div>
+  </div>
 </div>
 
-<form method="post" action="signup.php">
-	<table>
-		<tr>
-			<td>Username:</td>
-			<td><input type="text" name="username" class="textInput"></td>
-		</tr>
-		<tr>
-			<td>Nom:</td>
-			<td><input type="text" name="nom" class="textInput"></td>
-		</tr>
-		<tr>
-			<td>Prenom:</td>
-			<td><input type="text" name="prenom" class="textInput"></td>
-		</tr>
-		<tr>
-			<td>Password:</td>
-			<td><input type="text" name="password" class="textInput"></td>
-		</tr>
-		<tr>
-			<td>Password again:</td>
-			<td><input type="text" name="password2" class="textInput"></td>
-		</tr>
-		<tr>
-			<td>Email:</td>
-			<td><input type="text" name="email" class="textInput"></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><input type="submit" name="register_btn" value="Register"></td>
-		</tr>
-	</table>
-</form>
+
 </body>
 </html>
  
