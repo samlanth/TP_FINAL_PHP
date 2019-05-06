@@ -1,4 +1,8 @@
 <?php
+	function valid_email($str)
+	{
+		return (!preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $str)) ? FALSE : TRUE;
+	}
 	session_start();
 
 		$bdd = new PDO('mysql:host=167.114.152.54;dbname=dbequipe13;charset=utf8', 'equipe13', 'u2ea2e47');
@@ -10,7 +14,11 @@
 			$password = $_POST['password'];
 			$password2 = $_POST['password2'];
 			$mail = $_POST['email'];
-			if ($password == $password2)
+			if(!valid_email($mail))
+			{
+				echo "Invalid email address.";
+			}
+			else if ($password == $password2)
 			{
 				// create user
 				$insert = $bdd->prepare("CALL AjouterUser(?,?,?,?,?)");
@@ -32,7 +40,8 @@
 			else
 			{
 				// failed
-				$_SESSION['message'] = "The two passwords do not match";
+				$_SESSION['message'] = 'The two passwords do not match';
+				echo $_SESSION['message'];
 			}
 		}
 ?>
