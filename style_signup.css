@@ -1,0 +1,45 @@
+.photosIMG{
+  padding:10px;
+  width:100%;
+  height:400px;
+  border-bottom: 3px solid grey;
+}
+
+  #logo{
+    width: 70%;
+    height:40px;
+  }
+
+  .infos{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:30%;
+    margin-top: 2%;
+  }
+  .header{
+    height:50px;
+    background-color: rgb(29, 33, 41);
+    padding-top: 5px;
+  }
+
+  .main{
+    background-color: #e9ebee
+
+  }
+
+  .photos{
+    background-color: white;
+   }
+
+   #profilPic{
+     width:50%px;
+     height:200px;
+     float:left;
+     padding-right:20%;
+   }
+  .grid-template{
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+
+  }
