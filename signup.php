@@ -6,6 +6,8 @@
 	session_start();
 
 		$bdd = new PDO('mysql:host=167.114.152.54;dbname=dbequipe13;charset=utf8', 'equipe13', 'u2ea2e47');
+		// define variables and set to empty values
+		$usernameErr = $emailErr = $passwordErr = $password2Err = $prenomErr = $nomErr = $pass = $validEmail = "";
 		if (isset($_POST['register_btn']))
 		{
 			$username = $_POST['username'];
@@ -14,11 +16,46 @@
 			$password = $_POST['password'];
 			$password2 = $_POST['password2'];
 			$mail = $_POST['email'];
+			if (empty($_POST["username"]))
+			{
+				$usernameErr = "username is required";
+			}
+
+			if (empty($_POST["mail"]))
+			{
+			$emailErr = "Email is required";
+			}
+
+			if (empty($_POST["password"]))
+			{
+				$passwordErr = "password is required";
+			}
+
+			if (empty($_POST["password2"]))
+			{
+				$passwordErr = "password is required";
+			}
+
+			if (empty($_POST["nom"]))
+			{
+				$nomErr = "nom is required";
+			}
+			
+			if (empty($_POST["prenom"]))
+			{
+				$prenomErr = "prenom is required";
+			}
 			if(!valid_email($mail))
 			{
-				echo "Invalid email address.";
+				// failed
+				$emailErr = "Invalid Email address";
 			}
-			else if ($password == $password2)
+			if ($password != $password2)
+			{
+				// failed
+				$passwordErr = "The two passwords do not match";
+			}
+			if (valid_email($mail) && $password == $password2)
 			{
 				// create user
 				$insert = $bdd->prepare("CALL AjouterUser(?,?,?,?,?)");
@@ -37,18 +74,17 @@
 				$_SESSION['username'] = $username;
 				header("location: home.php"); // redirect to home.php
 			}
-			else
-			{
-				// failed
-				$_SESSION['message'] = 'The two passwords do not match';
-				echo $_SESSION['message'];
-			}
 		}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Register</title>
+<style>
+.error {
+	color: #FF0000;
+}
+</style>
+	<title>Inscription</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="style_signup.css">
 </head>
@@ -67,16 +103,35 @@
     <div class="main">
     </div>
     <div>
-	<h2 class="infos" align="middle">Inscription</h2>
+	<h2 class="infos">Inscription</h2>
       <div style="height:100%;">
 	  <form method="post" action="signup.php">
-        <input placeholder="Nom" type="text" name="nom" class="infos"><br>
-        <input placeholder="Prenom" type="text" name="prenom" class="infos"><br>
-        <input placeholder="Username" type="text" name="username" class="infos"> <br>
-        <input placeholder="Password" type="text" name="password" class="infos"><br>
-        <input placeholder="Confirmation password" type="text" name="password2" class="infos"><br>
-        <input placeholder="Email" type="text" name="email" class="infos"><br>
-        <button class="infos" type="submit" name="register_btn">S'inscrire</button>
+	  
+		  <input class="infos" placeholder="Nom" type="text" name="nom">
+		  <span class="error">* <?php echo $nomErr;?></span>
+		  <br><br>
+		  
+		  <input  class="infos" placeholder="Prenom" type="text" name="prenom">
+		  <span class="error">* <?php echo $prenomErr;?></span>
+		  <br><br>
+		  
+		  <input  class="infos" placeholder="Username" type="text" name="username">
+		  <span class="error">* <?php echo $usernameErr;?></span>
+		  <br><br>
+		  
+		  <input class="infos" placeholder="Password" type="text" name="password">
+		  <span class="error">* <?php echo $passwordErr;?></span>
+		  <br><br>
+		  
+		  <input  class="infos" placeholder="Confirmation" type="text" name="password2">
+		  <span class="error">* <?php echo $passwordErr;?></span>
+		  <br><br>
+		  
+		  <input  class="infos" placeholder="Email" type="text" name="email">
+		  <span class="error">* <?php echo $emailErr;?></span>
+		  <br><br>
+
+		  <button class="infos" type="submit" name="register_btn">S'inscrire</button><br>
 		</form>
       </div>
     </div>

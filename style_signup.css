@@ -22,7 +22,10 @@
     background-color: rgb(29, 33, 41);
     padding-top: 5px;
   }
-
+  .error {
+	  color: #FF0000;
+	  text-align: center;
+	  }
   .main{
     background-color: #e9ebee
 
