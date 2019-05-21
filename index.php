@@ -50,8 +50,9 @@
       <input value ="Rechercher.." id="searchBar">
     </div>
     <div class="header">
-      <p style="color:white;font-size:25px; padding-left:50px; float:left">Login</p>
-      <p style="color:white;font-size:25px; padding-left:50px; float:left">S'inscire</p>
+	
+      <p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php">Login</p></a>
+      <p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="signup.php">S'inscrire</p></a>
     </div>
   </div>
   <div class="grid-template">

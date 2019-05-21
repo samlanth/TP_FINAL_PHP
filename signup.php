@@ -75,6 +75,10 @@
 				header("location: home.php"); // redirect to home.php
 			}
 		}
+		if (isset($_POST['log_btn']))
+		{
+			header("location: login.php");
+		}
 ?>
 <!DOCTYPE html>
 <html>
@@ -93,8 +97,10 @@
    <div class="grid-template">
     <div class="header">
     <img src="Images/Logo.png" id="logo">
+	
     </div>
     <div class="header">
+	
     </div>
     <div class="header">
     </div>
@@ -109,29 +115,30 @@
 	  
 		  <input class="infos" placeholder="Nom" type="text" name="nom">
 		  <span class="error">* <?php echo $nomErr;?></span>
-		  <br><br>
+		  <br>
 		  
 		  <input  class="infos" placeholder="Prenom" type="text" name="prenom">
 		  <span class="error">* <?php echo $prenomErr;?></span>
-		  <br><br>
-		  
+		  <br>
+		 
 		  <input  class="infos" placeholder="Username" type="text" name="username">
 		  <span class="error">* <?php echo $usernameErr;?></span>
-		  <br><br>
+		  <br>
 		  
 		  <input class="infos" placeholder="Password" type="text" name="password">
 		  <span class="error">* <?php echo $passwordErr;?></span>
-		  <br><br>
+		  <br>
 		  
 		  <input  class="infos" placeholder="Confirmation" type="text" name="password2">
 		  <span class="error">* <?php echo $passwordErr;?></span>
-		  <br><br>
+		  <br>
 		  
 		  <input  class="infos" placeholder="Email" type="text" name="email">
 		  <span class="error">* <?php echo $emailErr;?></span>
-		  <br><br>
+		  <br>
 
 		  <button class="infos" type="submit" name="register_btn">S'inscrire</button><br>
+		  <button class="infos" type="submit" name="log_btn">Login</button><br>
 		</form>
       </div>
     </div>
