@@ -52,7 +52,7 @@
     </div>
     <div class="header">
       <input value ="Rechercher.." id="searchBar">
-	  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="profil.php">Profil</p></a>
+	  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="profil.php"><?php echo $_SESSION['username']; ?></p></a>
     </div>
     <div class="header">
       <p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php">Login</p></a>
@@ -64,31 +64,26 @@
     </div>
     <div>
       <div class="photos">
-	  <div><h4>Welcome  <?php echo $_SESSION['username']; ?></h4></div>
-	  <br/>
-	  <br/>
-	  <h3> asd<h3/>
 		<h3 align="middle">Photo de Samuel<h3/>
 		<h3 align="middle">Titre de la photo<h3/>
-        <img src="Images/img1.png" class="photosIMG">
-		
+        <img src="Images/img1.png" height="150" width="200" class="photosIMG">
 		<h3 align="middle">Nombre de commentaires<h3/>
 		<p id="date"></p><br>
 		<h3 align="middle">Photo de Cedric<h3/>
 		<h3 align="middle">Titre de la photo<h3/>
-        <img src="Images/img1.png" class="photosIMG">
+        <img src="Images/img1.png" height="150" width="200" class="photosIMG">
 		
 		<h3 align="middle">Nombre de commentaires<h3/>
 		<p id="date2"></p><br>
 		<h3 align="middle">Photo de Joe<h3/>
 		<h3 align="middle">Titre de la photo<h3/>
-        <img src="Images/img1.png" class="photosIMG">
+        <img src="Images/img1.png" height="150" width="200" class="photosIMG">
 		
 		<h3 align="middle">Nombre de commentaires<h3/>
 		<p id="date3"></p><br>
 		<h3 align="middle">Photo de Sam<h3/>
 		<h3 align="middle">Titre de la photo<h3/>
-        <img src="Images/img1.png" class="photosIMG">
+        <img src="Images/img1.png" height="150" width="200" class="photosIMG">
 		<h3 align="middle">Nombre de commentaires<h3/>
 		<p id="date4"></p><br>
       </div>
