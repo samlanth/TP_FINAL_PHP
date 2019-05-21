@@ -75,10 +75,6 @@
 				header("location: home.php"); // redirect to home.php
 			}
 		}
-		if (isset($_POST['log_btn']))
-		{
-			header("location: login.php");
-		}
 ?>
 <!DOCTYPE html>
 <html>
@@ -89,6 +85,7 @@
 }
 </style>
 	<title>Inscription</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="style_signup.css">
 </head>
@@ -99,10 +96,15 @@
     <img src="Images/Logo.png" id="logo">
 	
     </div>
+	
     <div class="header">
 	
     </div>
     <div class="header">
+	<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="index.php">Index</p></a>
+	<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php">Login</p></a>
+    </div>
+	
     </div>
   </div>
   <div class="grid-template">
@@ -138,7 +140,6 @@
 		  <br>
 
 		  <button class="infos" type="submit" name="register_btn">S'inscrire</button><br>
-		  <button class="infos" type="submit" name="log_btn">Login</button><br>
 		</form>
       </div>
     </div>

@@ -1,8 +1,12 @@
+<?php
+	session_start();
+	
+?>
 <html>
 <style>
 
   #searchBar{
-  width:100%;
+  width:75%;
   height: 75%;
   }
 
@@ -38,7 +42,7 @@
   }
 </style>
 <head>
-	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
@@ -48,19 +52,21 @@
     </div>
     <div class="header">
       <input value ="Rechercher.." id="searchBar">
+	  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="profil.php">Profil</p></a>
     </div>
     <div class="header">
-	
       <p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php">Login</p></a>
       <p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="signup.php">S'inscrire</p></a>
     </div>
   </div>
   <div class="grid-template">
     <div class="main">
-	
     </div>
     <div>
       <div class="photos">
+	  <div><h4>Welcome  <?php echo $_SESSION['username']; ?></h4></div>
+	  <br/>
+	  <br/>
 	  <h3> asd<h3/>
 		<h3 align="middle">Photo de Samuel<h3/>
 		<h3 align="middle">Titre de la photo<h3/>
