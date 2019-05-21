@@ -1,5 +1,6 @@
 <?php
 	session_start();
+
 		
 		$bdd = new PDO('mysql:host=167.114.152.54;dbname=dbequipe13;charset=utf8', 'equipe13', 'u2ea2e47');
 		$usernameErr = $passwordErr = "";
@@ -18,9 +19,25 @@
 			{
 			$passwordErr = "Password is required";
 			}
+			
+			$get = $bdd->prepare("CALL GetUser(?)",array(PDO::ATTR_CURSOR, PDO::CURSOR_FWDONLY));
+			
+			$get->bindParam(1,$alias);
+			$alias = $aliass;
+			$tot = $get->execute();
+			while ($d = $get->fetch())
+			{
+				$courriel = $d[0];
+				$pass = $d[1];
+			}
+			$get->closeCursor();
+			$_SESSION['courriel'] = $courriel;
+			$_SESSION['pass'] = $pass;
+			
+			
 			// check exist
 			$exist = $bdd->prepare("CALL Verifier(?,?)",array(PDO::ATTR_CURSOR, PDO::CURSOR_FWDONLY));
-
+			
 			$exist->bindParam(1,$alias);
 			$exist->bindParam(2,$mdp);
 			$alias = $aliass;
@@ -35,7 +52,8 @@
 			{
 				$_SESSION['message'] = "You are now logged in";
 				$_SESSION['username'] = $alias;
-				header("location: index.php"); // redirect to index.php
+				
+				header("location: home.php"); // redirect to index.php
 			}
 			else
 			{
@@ -44,6 +62,7 @@
 				$usernameErr = "Username is invalid";
 			}
 		}
+		
 
 		
 ?>

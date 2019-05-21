@@ -20,7 +20,13 @@
 </div>
 
 <div style="padding-left:16px">
+  <div><h4><?php echo $_SESSION['message']; ?></h4></div>
   <div><h4>Welcome  <?php echo $_SESSION['username']; ?></h4></div>
+  <div><h4>Courriel: <?php echo $_SESSION['courriel']; ?></h4></div>
+  <div><h4><?php echo $_SESSION['pass']; ?></h4></div>
+  
+  
+
 </div>
 
 </body>
