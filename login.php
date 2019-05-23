@@ -1,7 +1,7 @@
 <?php
 	session_start();
 
-		
+		$_SESSION['Connecter'] = "false";
 		$bdd = new PDO('mysql:host=167.114.152.54;dbname=dbequipe13;charset=utf8', 'equipe13', 'u2ea2e47');
 		$usernameErr = $passwordErr = "";
 		if (isset($_POST['login_btn']))
@@ -52,6 +52,7 @@
 			{
 				$_SESSION['message'] = "You are now logged in";
 				$_SESSION['username'] = $alias;
+				$_SESSION['Connecter'] = "true";
 				
 				header("location: index.php"); // redirect to index.php
 			}
@@ -60,6 +61,7 @@
 				// Failed
 				$passwordErr = "Password is invalid";
 				$usernameErr = "Username is invalid";
+				$_SESSION['Connecter'] = "false";
 			}
 		}
 		
@@ -85,10 +87,11 @@
     <img src="Images/Logo.png" id="logo">
     </div>
     <div class="header">
-    <p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="index.php">Index</p></a>
-	<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="signup.php">S'incricre</p></a>
+
     </div>
     <div class="header">
+	    <p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="index.php">Index</p></a>
+	<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="signup.php">S'incricre</p></a>
     </div>
   </div>
   <div class="grid-template">

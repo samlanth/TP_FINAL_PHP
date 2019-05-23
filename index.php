@@ -6,7 +6,7 @@
 <style>
 
   #searchBar{
-  width:75%;
+  width:60%;
   height: 75%;
   }
 
@@ -51,12 +51,19 @@
     <img src="Images/Logo.png" id="logo">
     </div>
     <div class="header">
+	<?php if ($_SESSION['Connecter'] == "true") : ?>
       <input value ="Rechercher.." id="searchBar">
+	  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="ajouter.php">Ajouter</p></a>
 	  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="profil.php"><?php echo $_SESSION['username']; ?></p></a>
+	  <?php endif; ?>
+	  <?php if ($_SESSION['Connecter'] == "false") : ?>
+      <input value ="Rechercher.." id="searchBar">
+	  <?php endif; ?>
     </div>
     <div class="header">
       <p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php">Login</p></a>
       <p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="signup.php">S'inscrire</p></a>
+	  
     </div>
   </div>
   <div class="grid-template">
