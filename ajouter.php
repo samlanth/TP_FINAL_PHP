@@ -5,21 +5,64 @@
  $add = $bdd->prepare("CALL AjouterPhotos(?,?,?,?)");
   
 	
- if(isset($_POST['addpic'])){
-	 
-	$title = $_POST['title'];
-	$desc = $_POST['desc'];
-	$file_name = $_FILES['filetoupload']['name'];
-	$alias = $_SESSION['username']; 
-	// Paramètre pour ajouter la photo
-	$add->bindParam(1,$title);
-	$add->bindParam(2,$desc);
-	$add->bindParam(3,$file_name);
-	$add->bindParam(4,$alias);
+ if(isset($_POST['addpic']))
+ {
+	$file = $_FILES['file'];
+
+	$fileName = $_FILES['file']['name'];
+	$fileTmpName = $_FILES['file']['tmp_name'];
+	$fileSize = $_FILES['file']['size'];
+	$fileError = $_FILES['file']['error'];
+	$fileType = $_FILES['file']['type'];
 	
-	$add->execute();
-	echo $title;
-	echo $desc;
+	$fileExt = explode('.', $fileName);
+	$fileActualExt = strtolower(end($fileExt));
+	
+	$allowed = array('jpg','jpeg','png','pdf');
+	
+	if (in_array($fileActualExt, $allowed))
+	{
+		if ($fileError === 0)
+		{
+			if ($fileSize < 500000)
+			{
+				$fileNameNew = uniqid('', true).".".$fileActualExt;
+				$fileDestination = 'Images/'.$fileNameNew;
+				move_uploaded_file($fileTmpName, $fileDestination);
+				// Initialisation
+				$Titre = $_POST['titre'];
+				$Description = $_POST['description'];
+				//$fileName = $_POST['file'];
+			    $Alias = $_SESSION['username']; 
+				
+				// Affectation
+				$add->bindParam(1,$Titre);
+				$add->bindParam(2,$Description);
+				$add->bindParam(3,$fileNameNew);
+				$add->bindParam(4,$Alias);
+				
+				// Executation
+				$add->execute();
+				header("Location: index.php?uploadsuccess");
+			}
+			else
+			{
+				echo "Your file is too big!";
+			}
+		}
+		else
+		{
+			echo "There was an error uploading your file!";
+		}
+	}
+	else
+	{
+		echo "You cannot upload files of this type!";
+	}
+	
+	// Redirection
+	header("Location: index.php");
+	
  }
  
 ?>
@@ -88,13 +131,15 @@
     <div class="main">
     </div>
     <div>
-        <img src="Images/Add.jpg" id="profilPic">
-		<form action="" method="POST" enctype="multipart/form-data"> 
-		<input type="file" name="filetoupload" class="infos">
-		</form>
-		<form method="POST" action="ajouter.php">
-		<input placeholder="Titre" class="infos" name="title">
-        <textarea class="infos" id="desc" placeholder="Decription" style="resize:none" name="desc" ></textarea>
+		<form method="POST" action="ajouter.php" enctype="multipart/form-data">
+		
+		<input type="file" name="file" class="infos">
+		<!-- <button type="submit" name="submit" class="infos">Upload photo</button> -->
+
+		<input placeholder="Titre" class="infos" name="titre">
+		
+        <textarea class="infos" id="desc" placeholder="Decription" style="resize:none" name="description" ></textarea>
+		
         <button class="infos" type ="submit" name="addpic">Ajouter la photo!</button> 
 		</form>
 		
