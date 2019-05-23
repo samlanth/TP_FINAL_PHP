@@ -1,7 +1,17 @@
 <?php
 	session_start();
 	$bdd = new PDO('mysql:host=167.114.152.54;dbname=dbequipe13;charset=utf8', 'equipe13', 'u2ea2e47');
-	
+	$get2 = $bdd->prepare("CALL GetComm(?)");
+	$get2->bindParam(1,$B);
+	$B = 1;
+	$NbComa = $get2->execute();
+				
+				while($a = $get2->fetch())
+				{
+					$NbComTest = $a[0];
+					
+				}
+	$get2->closeCursor();
 			
 ?>
 <html>
@@ -53,7 +63,14 @@
     <img src="Images/Logo.png" id="logo">
     </div>
     <div class="header">
-	
+	<?php if ($_SESSION['Connecter'] == "true") : ?>
+      <input value ="Rechercher.." id="searchBar">
+	  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="ajouter.php">Ajouter</p></a>
+	  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="profil.php"><?php echo $_SESSION['username']; ?></p></a>
+	  <?php endif; ?>
+	  <?php if ($_SESSION['Connecter'] == "false") : ?>
+      <input value ="Rechercher.." id="searchBar">
+	  <?php endif; ?>
  
 	  
 	  
@@ -85,6 +102,7 @@
 				$Description = $d[2];
 				$Url = $d[3];
 				$Alias = $d[4];
+				$Date = $d[5];
 				
 				$NbCom = $get1->execute();
 				
@@ -96,11 +114,19 @@
 
 				
 				?>
-				<h3 align="middle"><?php echo $NbCom ?><h3/>
-				<h3 align="middle"><?php echo $Alias ?><h3/>
-				<h3 align="middle"><?php echo $Titre ?><h3/>
+				
+				<h6 align="middle"><?php echo $Alias ?><h6/>
+				<h6 align="middle"><?php echo $Description ?><h6/>
+				<h6 align="middle"><?php echo $Titre ?><h6/>
+				<a href="gestimage.php/<?php echo $Numero ?>">
 				<img src= "Images/<?php echo $Url ?>" height="150" width="200" class="photosIMG">
-				<br><br><br><br>
+				</a>
+				<?php if($Numero == 1) :?>
+					<h6 align="middle"><?php echo $NbComTest ?><h6/>
+				<?php endif ?>
+				<h6 align="middle"><?php echo $NbCom ?><h6/>
+				<h6 align="middle"><?php echo $Date ?><h6/>
+				<br>
 
 				
 				
