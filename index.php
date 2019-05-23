@@ -1,6 +1,8 @@
 <?php
 	session_start();
+	$bdd = new PDO('mysql:host=167.114.152.54;dbname=dbequipe13;charset=utf8', 'equipe13', 'u2ea2e47');
 	
+			
 ?>
 <html>
 <style>
@@ -51,14 +53,10 @@
     <img src="Images/Logo.png" id="logo">
     </div>
     <div class="header">
-	<?php if ($_SESSION['Connecter'] == "true") : ?>
-      <input value ="Rechercher.." id="searchBar">
-	  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="ajouter.php">Ajouter</p></a>
-	  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="profil.php"><?php echo $_SESSION['username']; ?></p></a>
-	  <?php endif; ?>
-	  <?php if ($_SESSION['Connecter'] == "false") : ?>
-      <input value ="Rechercher.." id="searchBar">
-	  <?php endif; ?>
+	
+ 
+	  
+	  
     </div>
     <div class="header">
       <p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php">Login</p></a>
@@ -71,28 +69,47 @@
     </div>
     <div>
       <div class="photos">
-		<h3 align="middle">Photo de Samuel<h3/>
-		<h3 align="middle">Titre de la photo<h3/>
-        <img src="Images/img1.png" height="150" width="200" class="photosIMG">
-		<h3 align="middle">Nombre de commentaires<h3/>
-		<p id="date"></p><br>
-		<h3 align="middle">Photo de Cedric<h3/>
-		<h3 align="middle">Titre de la photo<h3/>
-        <img src="Images/img1.png" height="150" width="200" class="photosIMG">
+		<?php 
+			$get = $bdd->prepare("CALL GetAllPhotos()");
+			
+
+
+			$tot = $get->execute();
+			while ($d = $get->fetch())
+			{
+				$get1 = $bdd->prepare("CALL GetComm(?)");
+				$get1->bindParam(1,$Numero);
+				$Numero = $d[0];
+				
+				$Titre = $d[1];
+				$Description = $d[2];
+				$Url = $d[3];
+				$Alias = $d[4];
+				
+				$NbCom = $get1->execute();
+				
+				while($i = $get1->fetch())
+				{
+					$NbCom = $i[0];
+					
+				}
+
+				
+				?>
+				<h3 align="middle"><?php echo $NbCom ?><h3/>
+				<h3 align="middle"><?php echo $Alias ?><h3/>
+				<h3 align="middle"><?php echo $Titre ?><h3/>
+				<img src= "Images/<?php echo $Url ?>" height="150" width="200" class="photosIMG">
+				<br><br><br><br>
+
+				
+				
+			<?php
+			}
+			$get1->closeCursor();
+			$get->closeCursor();
+		?>
 		
-		<h3 align="middle">Nombre de commentaires<h3/>
-		<p id="date2"></p><br>
-		<h3 align="middle">Photo de Joe<h3/>
-		<h3 align="middle">Titre de la photo<h3/>
-        <img src="Images/img1.png" height="150" width="200" class="photosIMG">
-		
-		<h3 align="middle">Nombre de commentaires<h3/>
-		<p id="date3"></p><br>
-		<h3 align="middle">Photo de Sam<h3/>
-		<h3 align="middle">Titre de la photo<h3/>
-        <img src="Images/img1.png" height="150" width="200" class="photosIMG">
-		<h3 align="middle">Nombre de commentaires<h3/>
-		<p id="date4"></p><br>
       </div>
     </div>
     <div class="main">
