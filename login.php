@@ -54,10 +54,23 @@
 				$_SESSION['message'] = "You are now logged in";
 				$_SESSION['username'] = $alias;
 				$_SESSION['Connecter'] = "true";
-				if ($alias == "Admin")
+				if (strtoupper($alias) == "ADMIN")
 				{
 					$_SESSION['Admin'] = "true";
 				}
+				
+				$ip = getenv('HTTP_CLIENT_IP')?:
+				getenv('HTTP_X_FORWARDED_FOR')?:
+				getenv('HTTP_X_FORWARDED')?:
+				getenv('HTTP_FORWARDED_FOR')?:
+				getenv('HTTP_FORWARDED')?:
+				getenv('REMOTE_ADDR');
+				
+				$InsertionConnection = $bdd->prepare("CALL Inserer(?,?)");
+				$InsertionConnection->bindParam(1,$alias);
+				$InsertionConnection->bindParam(2,$ip);
+				$tot = $InsertionConnection->execute();
+				$InsertionConnection->closeCursor();
 				
 				header("location: index.php"); // redirect to index.php
 			}

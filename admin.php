@@ -60,6 +60,21 @@
   margin:auto;
 }
   
+ table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+} 
 </style>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -131,6 +146,37 @@
 			$getdelete->closeCursor();
 			}
 			?>
+			
+			
+		<table class="infos">
+			  <tr>
+				<th>Alias</th>
+				<th>Email</th>
+				<th>Ip</th>
+			  </tr>
+			  <tr>
+					<?php 
+			$get = $bdd->prepare("CALL LastUsers()");
+			$tot = $get->execute();
+			while ($d = $get->fetch())
+			{
+				$Alias = $d[0];
+				$Date = $d[1];
+				$Ip = $d[2];	
+				?>
+				
+				<td><?php echo $Alias ?></td>
+				<td><?php echo $Date ?></td>
+				<td><?php echo $Ip ?></td>
+				</tr>
+			<?php
+			}
+			$get->closeCursor();
+		?>
+
+
+			 
+		</table>	
 		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		</fieldset>
         
