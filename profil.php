@@ -7,10 +7,7 @@
 	$name =  $_SESSION['username'];
 	$password = $_SESSION['pass'];
 	
-	if (isset($_POST['modifier']))
-	{
-		
-	}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,14 +42,36 @@
 <div style="padding-left:16px">
 <form method="post" action="profil.php">
   <div><h1 class="infos">Profil de   <?php echo $_SESSION['username']; ?></h1></div>
+ 
   <h3 class="infos">Courriel:</h3>
-  <input type="text" name="firstname" value=<?php echo $_SESSION['courriel']; ?> class="infos">
+  <input type="text" name="EMAIL" value=<?php echo $_SESSION['courriel']; ?> class="infos">
   
   <h3 class="infos">Mot de passe:</h3>
-  <input type="text" name="lastname" value=<?php echo $_SESSION['pass']; ?> class="infos">
+  <input type="text" name="MDP" value=<?php echo $_SESSION['pass']; ?> class="infos">
   
-  <button class="infos" type="submit" name="modifier">Modifier</button>
+  <h3 class="infos">Rappeller Log in </h3>
+  <p class="infos">
+<input type="radio" name="yes_no" checked>Oui</input>
+<input type="radio" name="yes_no">Non</input>
+</p>
+  <input class="infos" type="submit" name="Modifier" value="Modifier"></input>
+  <?php
+			if(isset($_POST['Modifier'])){
+			$EMAIL = $_POST['EMAIL'];
+			$MDP = $_POST['MDP'];
+			$getModifier = $bdd->prepare("CALL Modifier(?,?,?)");
+			$getModifier->bindParam(1,$name);
+			$getModifier->bindParam(2,$MDP);
+			$getModifier->bindParam(3,$EMAIL);
+			$tot = $getModifier->execute();
+			$getModifier->closeCursor();
+			$_SESSION['courriel'] = $EMAIL;
+			$_SESSION['pass'] = $MDP;
+			}
+			?>
+	
 </form> 
+
   
 
 </div>
