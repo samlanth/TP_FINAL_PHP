@@ -23,7 +23,9 @@ while($i = $infos->fetch())
 	$date = $i[5];
 }
 
-// Get les comments de la photo 
+// Get les comments de la photo
+$getcomments = $bdd->prepare("CALL GetAllComments(?)",array(PDO::ATTR_CURSOR, PDO::CURSOR_FWDONLY));
+$getcomments->bindParam(1,$num);
 
 // Ecrire un comment pour la photo
   if(isset($_POST['commentbtn']))
@@ -121,6 +123,16 @@ while($i = $infos->fetch())
 		  <h3 class="infos">Commentaire de Ced</h3>
 		  <h3 class="infos">Belle image</h3>
 		  <p id="date3"></p><br>
+        <?php
+            // Afficher les commentaires
+            $getcomments->execute();
+            while($c = $getcomments->fetch())
+            {
+             echo '<h3 class="infos"> Commentaire de ' . $c[4] . '</h3>';
+             echo '<h3 class="infos"> $c[0]</h3>';
+             echo '<h3 class="infos"> Publie le ' . $c[5] . '</h3>';
+           }
+          ?>   
 		  <div id="respond">
 </div>
           </div>
