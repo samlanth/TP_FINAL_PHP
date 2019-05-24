@@ -1,6 +1,16 @@
 <?php
 	session_start();
 	
+	$bdd = new PDO('mysql:host=167.114.152.54;dbname=dbequipe13;charset=utf8', 'equipe13', 'u2ea2e47');
+	$mailErr = $PasswordErr = "";
+	$mail = $_SESSION['courriel'];
+	$name =  $_SESSION['username'];
+	$password = $_SESSION['pass'];
+	
+	if (isset($_POST['modifier']))
+	{
+		
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,17 +36,23 @@
     </div>
     <div class="header">
 	<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="index.php">Index</p></a>
-	<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php">Login</p></a>
+	<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php">Logout</p></a>
     </div>
 	
     </div>
   </div>
 
 <div style="padding-left:16px">
-  <div><h4>Profil de   <?php echo $_SESSION['username']; ?></h4></div>
-  <div><h4>Courriel: <?php echo $_SESSION['courriel']; ?></h4></div>
-  <div><h4><?php echo $_SESSION['pass']; ?></h4></div>
+<form method="post" action="profil.php">
+  <div><h1 class="infos">Profil de   <?php echo $_SESSION['username']; ?></h1></div>
+  <h3 class="infos">Courriel:</h3>
+  <input type="text" name="firstname" value=<?php echo $_SESSION['courriel']; ?> class="infos">
   
+  <h3 class="infos">Mot de passe:</h3>
+  <input type="text" name="lastname" value=<?php echo $_SESSION['pass']; ?> class="infos">
+  
+  <button class="infos" type="submit" name="modifier">Modifier</button>
+</form> 
   
 
 </div>

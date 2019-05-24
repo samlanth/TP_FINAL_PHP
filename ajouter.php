@@ -24,7 +24,7 @@
 	{
 		if ($fileError === 0)
 		{
-			if ($fileSize < 500000)
+			if ($fileSize < 50000000000)
 			{
 				$fileNameNew = uniqid('', true).".".$fileActualExt;
 				$fileDestination = 'Images/'.$fileNameNew;
