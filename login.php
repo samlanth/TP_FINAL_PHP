@@ -2,6 +2,7 @@
 	session_start();
 
 		$_SESSION['Connecter'] = "false";
+		$_SESSION['Admin'] = "false";
 		$bdd = new PDO('mysql:host=167.114.152.54;dbname=dbequipe13;charset=utf8', 'equipe13', 'u2ea2e47');
 		$usernameErr = $passwordErr = "";
 		if (isset($_POST['login_btn']))
@@ -53,6 +54,10 @@
 				$_SESSION['message'] = "You are now logged in";
 				$_SESSION['username'] = $alias;
 				$_SESSION['Connecter'] = "true";
+				if ($alias == "Admin")
+				{
+					$_SESSION['Admin'] = "true";
+				}
 				
 				header("location: index.php"); // redirect to index.php
 			}
