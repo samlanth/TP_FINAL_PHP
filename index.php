@@ -70,7 +70,7 @@
 	  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="profil.php"><?php echo $_SESSION['username']; ?></p></a>
 	<?php } else { ?>
 	  
-	  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="profil.php">S'inscrire</p></a>
+	  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="signup.php">S'inscrire</p></a>
 	<?php } ?>
 	
  
