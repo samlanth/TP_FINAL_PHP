@@ -27,7 +27,7 @@
 			if ($fileSize < 50000000000)
 			{
 				$fileNameNew = uniqid('', true).".".$fileActualExt;
-				$fileDestination = 'Images/'.$fileNameNew;
+				$fileDestination = './Images/'.$fileNameNew;
 				move_uploaded_file($fileTmpName, $fileDestination);
 				// Initialisation
 				$Titre = $_POST['titre'];
