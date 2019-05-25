@@ -72,7 +72,7 @@
 				$totalSS = $insert->execute();
 				$_SESSION['message'] = "You are now logged in";
 				$_SESSION['username'] = $username;
-				header("location: home.php"); // redirect to home.php
+				header("location: index.php"); // redirect to index.php
 			}
 		}
 ?>
