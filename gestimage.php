@@ -146,7 +146,7 @@ if (isset($_POST['commentbtn']))
 						  
 						  <form method="post" action="gestimage.php?num=<?php echo $id ?>">
 						  <textarea class="infos" name="comment" placeholder="Commentaire" cols="40" rows="6" ></textarea>
-						  <input class="infos"type="submit" value="comment" name="commentbtn">
+						  <input class="infos"type="submit" value="comment" name="commentbtn" <?php if ($_SESSION['Connecter'] != "true"){ ?> disabled <?php   }?>>
 						  </form>
 		  
         <?php
