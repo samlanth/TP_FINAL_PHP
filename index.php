@@ -127,23 +127,30 @@
 					
 				}
 
-				$_SESSION['numero'] = $Numero;
+				$_SESSION['nume'] = $Numero;
+				$_SESSION['u'] = $Url;
+				$_SESSION['a'] = $Alias;
+				$_SESSION['d'] = $Description;
+				$_SESSION['t'] = $Titre;
 				?>
 				
 				<h6 align="middle"><?php echo $Alias ?><h6/>
 				<h6 align="middle"><?php echo $Description ?><h6/>
 				<h6 align="middle"><?php echo $Titre ?><h6/>
-				<!-- <a href="gestimage.php/<?php echo $Numero ?>">
+				
+				<a href="gestimage.php?num=<?php echo $Numero ?>">
 				<img src= "Images/<?php echo $Url ?>" height="150" width="200" class="photosIMG">
 				</a>
-				-->
+				
+				<!--
 				<a href="gestimage.php">
 				<img src= "Images/<?php echo $Url ?>" height="150" width="200" class="photosIMG">
 				</a>
+				-->
 				<?php if($Numero == 1) :?>
 					<h6 align="middle"><?php echo $NbComTest ?><h6/>
 				<?php endif ?>
-				<h6 align="middle"><?php echo $NbCom ?><h6/>
+				<h6 align="middle"><?php echo $NbCom ?> Commentaires<h6/>
 				<h6 align="middle"><?php echo $Date ?><h6/>
 				<br>
 

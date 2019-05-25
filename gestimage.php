@@ -8,17 +8,17 @@
 	$infos = $bdd->prepare("CALL GetPhoto(?)"); 
 	
 	// Procedure AjouterCommentaires
-	$commenter = $bdd->prepare("CALL AjouterCommentaires(?,?,?,?)");
+	//$commenter = $bdd->prepare("CALL AjouterCommentaires(?,?,?,?)");
 	
 	// Get le id de la photo
 	$url = $_SERVER['REQUEST_URI'];
 	preg_match("/[^\/]+$/",$url, $match);
 	$id = $match[0];
-
+    $id = $_GET['num'];
 
 $infos = $bdd->prepare("CALL GetPhoto(?)");
 $infos->bindParam(1,$id);
-$id = 1;
+
 $resultat = $infos->execute();
 while ($donnees = $infos->fetch())
 	{
@@ -45,8 +45,8 @@ if (isset($_POST['commentbtn']))
 	$commenter->bindParam(4,$currentUser);
 
 	$description = $_POST['comment'];
-	$numImage = 1;
-	$user = "Sam";
+	$numImage = $id;
+	//$user = "Sam";
 	$currentUser = $_SESSION['username']; 
 	
 	$total = $commenter->execute();
@@ -112,25 +112,25 @@ if (isset($_POST['commentbtn']))
 			</div>
 				<div class="header">
 					  <?php if ($co == "true") { ?>
-					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="ajouter.php">Ajouter</p></a>
+					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="../ajouter.php">Ajouter</p></a>
 					  
-					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="profil.php"><?php echo $_SESSION['username']; ?></p></a>
+					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="../profil.php"><?php echo $_SESSION['username']; ?></p></a>
 					  <?php } else { ?>
 					
-					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="signup.php">S'inscrire</p></a>
+					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="../signup.php">S'inscrire</p></a>
 					  <?php } ?>
 					  <?php if ($ad == "true") { ?>
-					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="admin.php">Administrator</p></a>
+					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="../admin.php">Administrator</p></a>
 					  <?php } ?>
 				</div>
 					<div class="header">
 						<?php if ($co == "true") { ?>
 						
-						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="index.php">Index</p></a>
-						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php">Logout</p></a>
+						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="../index.php">Index</p></a>
+						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="../login.php">Logout</p></a>
 						<?php } else { ?>
-						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="index.php">Index</p></a>
-						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php">Login</p></a>
+						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="../index.php">Index</p></a>
+						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="../login.php">Login</p></a>
 						<?php } ?>
 					</div>
       </div>
@@ -139,12 +139,12 @@ if (isset($_POST['commentbtn']))
 			</div>
 				<div>
 					  <div>
-					  		  
 						  <h3 class="infos" align="middle">Photo de <?php echo $user ?></h3>
 						  <h3 class="infos" align="middle"><?php echo $titre ?></h3>
 						  <img src="Images/<?php echo $url ?>" height="150" width="200" class="photosIMG">
 						  
-						  <form method="post" action="gestimage.php">
+						  
+						  <form method="post" action="gestimage.php?num=<?php echo $id ?>">
 						  <textarea class="infos" name="comment" placeholder="Commentaire" cols="40" rows="6" ></textarea>
 						  <input class="infos"type="submit" value="comment" name="commentbtn">
 						  </form>
@@ -155,6 +155,8 @@ if (isset($_POST['commentbtn']))
             while($c = $getcomments->fetch())
             {
 				?>
+				
+				
              <h3 class="infos"> Commentaire de <?php echo $c[4] ?></h3>
              <h3 class="infos"><?php echo $c[0] ?></h3>
              <h3 class="infos"> Publier le <?php echo $c[5] ?></h3>
