@@ -112,25 +112,25 @@ if (isset($_POST['commentbtn']))
 			</div>
 				<div class="header">
 					  <?php if ($co == "true") { ?>
-					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="../ajouter.php">Ajouter</p></a>
+					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="./ajouter.php">Ajouter</p></a>
 					  
-					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="../profil.php"><?php echo $_SESSION['username']; ?></p></a>
+					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="./profil.php"><?php echo $_SESSION['username']; ?></p></a>
 					  <?php } else { ?>
 					
-					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="../signup.php">S'inscrire</p></a>
+					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="./signup.php">S'inscrire</p></a>
 					  <?php } ?>
 					  <?php if ($ad == "true") { ?>
-					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="../admin.php">Administrator</p></a>
+					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="./admin.php">Administrator</p></a>
 					  <?php } ?>
 				</div>
 					<div class="header">
 						<?php if ($co == "true") { ?>
 						
-						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="../index.php">Index</p></a>
-						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="../login.php">Logout</p></a>
+						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="./index.php">Index</p></a>
+						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="./login.php">Logout</p></a>
 						<?php } else { ?>
-						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="../index.php">Index</p></a>
-						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="../login.php">Login</p></a>
+						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="./index.php">Index</p></a>
+						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="./login.php">Login</p></a>
 						<?php } ?>
 					</div>
       </div>
