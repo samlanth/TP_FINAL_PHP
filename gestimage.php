@@ -1,49 +1,60 @@
 <?php 
-session_start();
-$bdd = new PDO('mysql:host=167.114.152.54;dbname=dbequipe13;charset=utf8', 'equipe13', 'u2ea2e47');
-$infos = $bdd->prepare("CALL GetPhoto(?)",array(PDO::ATTR_CURSOR, PDO::CURSOR_FWDONLY)); 
-$commenter = $bdd->prepare("CALL AjouterCommentaires(?,?,?,?)");
+	session_start();
+	$co = $_SESSION['Connecter'];
+	$ad = $_SESSION['Admin'];
+	$bdd = new PDO('mysql:host=167.114.152.54;dbname=dbequipe13;charset=utf8', 'equipe13', 'u2ea2e47');
+	
+	// Procedure GetPhoto
+	$infos = $bdd->prepare("CALL GetPhoto(?)"); 
+	
+	// Procedure AjouterCommentaires
+	$commenter = $bdd->prepare("CALL AjouterCommentaires(?,?,?,?)");
+	
+	// Get le id de la photo
+	$url = $_SERVER['REQUEST_URI'];
+	preg_match("/[^\/]+$/",$url, $match);
+	$id = $match[0];
 
-// Get le id de la photo
-$url = $_SERVER['REQUEST_URI'];
-preg_match("/[^\/]+$/",$url, $match);
-$id = $match[0]; 
 
+$infos = $bdd->prepare("CALL GetPhoto(?)");
 $infos->bindParam(1,$id);
-$infos->execute();
-
-// Get les infos sur la photo
-while($i = $infos->fetch())
-{
-	$num = $i[0];
-	$titre = $i[1];
-	$desc = $i[2];
-	$nom = $i[3];
-	$owner = $i[4];
-	$date = $i[5];
-}
+$id = 1;
+$resultat = $infos->execute();
+while ($donnees = $infos->fetch())
+	{
+		$numImage = $donnees[0];
+		$titre = $donnees[1];
+		$description = $donnees[2];
+		$url = $donnees[3];
+		$user = $donnees[4];
+		$currentUser = $_SESSION['username']; 
+		
+	}
+$infos->closeCursor();
 
 // Get les comments de la photo
 $getcomments = $bdd->prepare("CALL GetAllComments(?)",array(PDO::ATTR_CURSOR, PDO::CURSOR_FWDONLY));
-$getcomments->bindParam(1,$num);
+$getcomments->bindParam(1,$numImage);
 
-// Ecrire un comment pour la photo
-  if(isset($_POST['commentbtn']))
-  {
-	$commentaire = $_POST['comment'];
-	echo $commentaire;
-	  if($commentaire != " "){
-	  
-	  $commenter->bindParam(1,$commentaire);
-	  $commenter->bindParam(2,$num);
-	  $commenter->bindParam(3,$owner);
-	  $commenter->bindParam(4,$currentUser);
-	  $currentUser = $_SESSION['username'];  
-	  }
-  }
+if (isset($_POST['commentbtn']))
+{
+	$commenter = $bdd->prepare("CALL AjouterCommentaires(?,?,?,?)",array(PDO::ATTR_CURSOR, PDO::CURSOR_FWDONLY));
+	$commenter->bindParam(1,$description);
+	$commenter->bindParam(2,$numImage);
+	$commenter->bindParam(3,$user);
+	$commenter->bindParam(4,$currentUser);
+
+	$description = $_POST['comment'];
+	$numImage = 1;
+	$user = "Sam";
+	$currentUser = $_SESSION['username']; 
+	
+	$total = $commenter->execute();
+	$commenter->closeCursor();
+}
 ?>
 
-
+<!DOCTYPE html>
 <html>
 <style>
   #logo{
@@ -89,54 +100,73 @@ $getcomments->bindParam(1,$num);
   }
 </style>
 <head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="style_login.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
-  <body>
+
+<body>
       <div class="grid-template">
-        <div class="header">
-        <img src="Images/Logo.png" id="logo">
-        </div>
-        <div class="header">
-        </div>
-        <div class="header">
-          <p style="color:white;font-size:25px; padding-left:50px; float:left">Login</p>
-          <p style="color:white;font-size:25px; padding-left:50px; float:left">S'inscire</p>
-        </div>
+			<div class="header">
+			<img src="Images/Logo.png" id="logo">
+			</div>
+				<div class="header">
+					  <?php if ($co == "true") { ?>
+					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="ajouter.php">Ajouter</p></a>
+					  
+					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="profil.php"><?php echo $_SESSION['username']; ?></p></a>
+					  <?php } else { ?>
+					
+					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="signup.php">S'inscrire</p></a>
+					  <?php } ?>
+					  <?php if ($ad == "true") { ?>
+					  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="admin.php">Administrator</p></a>
+					  <?php } ?>
+				</div>
+					<div class="header">
+						<?php if ($co == "true") { ?>
+						
+						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="index.php">Index</p></a>
+						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php">Logout</p></a>
+						<?php } else { ?>
+						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="index.php">Index</p></a>
+						<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php">Login</p></a>
+						<?php } ?>
+					</div>
       </div>
       <div class="grid-template">
-        <div class="main">
-        </div>
-        <div>
-          <div>
-		  <h3 class="infos" align="middle">Photo de <?php echo $owner ?></h3>
-		  <h3 class="infos" align="middle"><?php echo $titre ?></h3>
-		  <img src="Images/ <?php echo $nom ?>" class="photosIMG" align="middle">
-		  <textarea name="comment" placeholder="Belle photo de Canard" cols="40" rows="6" ></textarea><br>
-		  <form> 
-		  <input type="submit" value="comment" name="commentbtn">
-		  <h3 class="infos">Commentaire de Joe</h3>
-		  <h3 class="infos">Belle photo de Canard</h3>
-		  <p id="date"></p><br>
-		  <h3 class="infos">Commentaire de Sam</h3>
-		  <h3 class="infos">Belle photo</h3>
-		  <p id="date2"></p><br>
-		  <h3 class="infos">Commentaire de Ced</h3>
-		  <h3 class="infos">Belle image</h3>
-		  <p id="date3"></p><br>
+			<div class="main">
+			</div>
+				<div>
+					  <div>
+					  		  
+						  <h3 class="infos" align="middle">Photo de <?php echo $user ?></h3>
+						  <h3 class="infos" align="middle"><?php echo $titre ?></h3>
+						  <img src="Images/<?php echo $url ?>" height="150" width="200" class="photosIMG">
+						  
+						  <form method="post" action="gestimage.php">
+						  <textarea class="infos" name="comment" placeholder="Commentaire" cols="40" rows="6" ></textarea>
+						  <input class="infos"type="submit" value="comment" name="commentbtn">
+						  </form>
+		  
         <?php
             // Afficher les commentaires
             $getcomments->execute();
             while($c = $getcomments->fetch())
             {
-             echo '<h3 class="infos"> Commentaire de ' . $c[4] . '</h3>';
-             echo '<h3 class="infos"> $c[0]</h3>';
-             echo '<h3 class="infos"> Publie le ' . $c[5] . '</h3>';
+				?>
+             <h3 class="infos"> Commentaire de <?php echo $c[4] ?></h3>
+             <h3 class="infos"><?php echo $c[0] ?></h3>
+             <h3 class="infos"> Publier le <?php echo $c[5] ?></h3>
+			 <?php
            }
+		   $getcomments->closeCursor();
           ?>   
 		  <div id="respond">
-</div>
-          </div>
-        </div>
+		  </div>
+						  
+				    </div>
+			 </div>
         <div class="main">
         </div>
       </div>

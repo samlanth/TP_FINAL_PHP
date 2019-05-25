@@ -127,13 +127,17 @@
 					
 				}
 
-				
+				$_SESSION['numero'] = $Numero;
 				?>
 				
 				<h6 align="middle"><?php echo $Alias ?><h6/>
 				<h6 align="middle"><?php echo $Description ?><h6/>
 				<h6 align="middle"><?php echo $Titre ?><h6/>
-				<a href="gestimage.php/<?php echo $Numero ?>">
+				<!-- <a href="gestimage.php/<?php echo $Numero ?>">
+				<img src= "Images/<?php echo $Url ?>" height="150" width="200" class="photosIMG">
+				</a>
+				-->
+				<a href="gestimage.php">
 				<img src= "Images/<?php echo $Url ?>" height="150" width="200" class="photosIMG">
 				</a>
 				<?php if($Numero == 1) :?>
