@@ -32,8 +32,6 @@
 				$pass = $d[1];
 			}
 			$get->closeCursor();
-			$_SESSION['courriel'] = $courriel;
-			$_SESSION['pass'] = $pass;
 			
 			
 			// check exist
@@ -71,7 +69,8 @@
 				$InsertionConnection->bindParam(2,$ip);
 				$tot = $InsertionConnection->execute();
 				$InsertionConnection->closeCursor();
-				
+				$_SESSION['courriel'] = $alias;
+				$_SESSION['pass'] = $mdp;
 				header("location: index.php"); // redirect to index.php
 			}
 			else
@@ -121,7 +120,7 @@
 	  <form method="post" action="login.php">
 			<input placeholder="Username" type="text" name="alias" class="infos"> 
 			<span class="error">* <?php echo $usernameErr;?></span>
-			<input placeholder="Password" type="text" name="mdp" class="infos">
+			<input placeholder="Password" type="password" name="mdp" class="infos">
 			<span class="error">* <?php echo $passwordErr;?></span>
 			<button class="infos" type="submit" name="login_btn">Login</button>
 		</form>

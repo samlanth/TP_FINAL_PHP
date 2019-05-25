@@ -44,10 +44,10 @@
   <div><h1 class="infos">Profil de   <?php echo $_SESSION['username']; ?></h1></div>
  
   <h3 class="infos">Courriel:</h3>
-  <input type="text" name="EMAIL" value=<?php echo $_SESSION['courriel']; ?> class="infos">
+  <input class="infos" type="text" name="EMAIL" value=<?php echo $_SESSION['courriel']; ?>>
   
   <h3 class="infos">Mot de passe:</h3>
-  <input type="text" name="MDP" value=<?php echo $_SESSION['pass']; ?> class="infos">
+  <input class="infos" type="password" name="MDP" value=<?php echo $_SESSION['pass']; ?>>
   
   <h3 class="infos">Rappeller Log in </h3>
   <p class="infos">
