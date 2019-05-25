@@ -127,11 +127,11 @@
 		  <span class="error">* <?php echo $usernameErr;?></span>
 		  <br>
 		  
-		  <input class="infos" placeholder="Password" type="text" name="password">
+		  <input class="infos" placeholder="Password" type="password" name="password">
 		  <span class="error">* <?php echo $passwordErr;?></span>
 		  <br>
 		  
-		  <input  class="infos" placeholder="Confirmation" type="text" name="password2">
+		  <input  class="infos" placeholder="Confirmation" type="password" name="password2">
 		  <span class="error">* <?php echo $passwordErr;?></span>
 		  <br>
 		  

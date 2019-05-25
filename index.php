@@ -1,8 +1,28 @@
 <?php
 	session_start();
 	
-	$co = $_SESSION['Connecter'];
-	$ad = $_SESSION['Admin'];
+
+if (isset($_SESSION['Connecter']))
+{
+    $co = $_SESSION['Connecter'];
+}
+else
+{
+	$_SESSION['Connecter'] = "false";
+	$co = "false";
+}
+if (isset($_SESSION['Admin']))
+{
+    $ad = $_SESSION['Admin'];
+}
+else
+{
+	$_SESSION['Admin'] = "false";
+	$ad = "false";
+}
+
+	//$co = $_SESSION['Connecter'];
+	//$ad = $_SESSION['Admin'];
 	$bdd = new PDO('mysql:host=167.114.152.54;dbname=dbequipe13;charset=utf8', 'equipe13', 'u2ea2e47');
 	$get2 = $bdd->prepare("CALL GetComm(?)");
 	$get2->bindParam(1,$B);
@@ -66,8 +86,10 @@
     </div>
     <div class="header">
 	<?php if ($co == "true") { ?>
-      <input value ="Rechercher.." id="searchBar">
-	  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="ajouter.php">Ajouter</p></a>
+      <input value ="" id="searchBar">
+	  <button>Rechercher</button>
+
+	  <p style="color:white;font-size:25px; padding-left:25px; float:right"> <a class="active" href="ajouter.php">Ajouter</p></a>
 	  
 	  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="profil.php"><?php echo $_SESSION['username']; ?></p></a>
 	<?php } else { ?>
@@ -75,7 +97,7 @@
 	  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="signup.php">S'inscrire</p></a>
 	<?php } ?>
 	<?php if ($ad == "true") { ?>
-	  	  <p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="admin.php">Administrator</p></a>
+	  	  <p style="color:white;font-size:25px; padding-left:20px; float:right"> <a class="active" href="admin.php">Administrator</p></a>
 		  <?php } ?>
 	
  
@@ -87,7 +109,7 @@
     </div>
     <div class="header">
 	<?php if ($co == "true") { ?>
-	<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php">Logout</p></a>
+	<p style="color:white;font-size:25px; padding-left:85px; float:left"> <a class="active" href="login.php">Logout</p></a>
 	<?php } else { ?>
 	
 	<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php">Login</p></a>
