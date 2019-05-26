@@ -148,6 +148,23 @@ if (isset($_POST['commentbtn']))
 			</div>
 				<div>
 					  <div>
+					  <?php
+				if (isset($_POST['del_img']))
+				{
+					$Del = $bdd->prepare("CALL SupprimerPhotos(?)");
+					$Del->bindParam(1,$_SESSION['username']);
+					$Del->execute();
+					header("Location: index.php");
+				}
+				?>
+				
+				
+				<form method="post" action="gestimage.php?num=".$id>
+				<?php if($user == $_SESSION['username']) :?>
+				<button class="infos" type="submit" name="del_img">SupprimerImage</button>
+				<?php endif ?>
+				</form>
+				
 						  <h3 class="infos" align="middle">Photo de <?php echo $user ?></h3>
 						  <h3 class="infos" align="middle"><?php echo $titre ?></h3>
 						  <img src="Images/<?php echo $url ?>" height="150" width="200" class="photosIMG">
@@ -157,6 +174,8 @@ if (isset($_POST['commentbtn']))
 						  <textarea class="infos" name="comment" placeholder="Commentaire" cols="40" rows="6" ></textarea>
 						  <input class="infos"type="submit" value="comment" name="commentbtn" <?php if ($_SESSION['Connecter'] != "true"){ ?> disabled <?php   }?>>
 						  </form>
+						  
+						  
 		  
         <?php
             // Afficher les commentaires

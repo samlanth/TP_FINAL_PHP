@@ -156,6 +156,26 @@ else
 				$_SESSION['t'] = $Titre;
 				?>
 				
+				<?php
+				if (isset($_POST['del_btn']))
+				{
+					$Del = $bdd->prepare("CALL SupprimerPhotos(?)");
+					$Del->bindParam(1,$_SESSION['username']);
+					$Del->execute();
+					header("Location: index.php");
+				}
+				?>
+				
+				
+				<form method="post" action="index.php">
+				<?php if($Alias == $_SESSION['username']) :?>
+				<button class="infos" type="submit" name="del_btn">SupprimerImage</button>
+				<?php endif ?>
+				</form>
+				
+				
+				
+				
 				<h6 align="middle"><?php echo $Alias ?><h6/>
 				<h6 align="middle"><?php echo $Description ?><h6/>
 				<h6 align="middle"><?php echo $Titre ?><h6/>
