@@ -35,9 +35,19 @@ else
 	//$co = $_SESSION['Connecter'];
 	//$ad = $_SESSION['Admin'];
 
+	
+	$gettest = $bdd->prepare("CALL GetAllPhotos()");
+	$tota = $gettest->execute();
+			while ($de = $gettest->fetch())
+			{
+				$NuC = $de[0];
+				echo $NuC;
+				$gettest->closeCursor();
+			}
+			
 	$get2 = $bdd->prepare("CALL GetComm(?)");
 	$get2->bindParam(1,$B);
-	$B = 1;
+	$B = $NuC;
 	$NbComa = $get2->execute();
 				
 	while($a = $get2->fetch())
@@ -45,7 +55,6 @@ else
 		$NbComTest = $a[0];
 	}
 	$get2->closeCursor();
-			
 ?>
 <html>
 <style>
@@ -139,7 +148,7 @@ else
       <div class="photos">
 		<?php 
 			$get = $bdd->prepare("CALL GetAllPhotos()");
-			
+
 
 
 			$tot = $get->execute();
@@ -156,7 +165,6 @@ else
 				$Date = $d[5];
 				
 				$NbCom = $get1->execute();
-				
 				while($i = $get1->fetch())
 				{
 					$NbCom = $i[0];
@@ -198,11 +206,14 @@ else
 				<img src= "Images/<?php echo $Url ?>" height="150" width="200" class="photosIMG">
 				</a>
 				-->
-				<?php if($Numero == 1) :?>
-					<h6 align="middle"><?php echo $NbComTest ?><h6/>
-				<?php endif ?>
+				<?php if($Numero == $NuC) {?>
+					<h6 align="middle">Il y a <?php echo $NbComTest ?> Commentaires<h6/>
+				<h6 align="middle">Publie le <?php echo $Date ?><h6/>
+				
+				<?php } else {?>
 				<h6 align="middle">Il y a <?php echo $NbCom ?> Commentaires<h6/>
 				<h6 align="middle">Publie le <?php echo $Date ?><h6/>
+				<?php  }?>
 				<br>
 
 				
