@@ -12,6 +12,7 @@
 	
 	// Get le id de la photo
 	$url = $_SERVER['REQUEST_URI'];
+	$url1 = $_SERVER['REQUEST_URI'];
 	preg_match("/[^\/]+$/",$url, $match);
 	$id = $match[0];
     $id = $_GET['num'];
@@ -61,7 +62,17 @@ if (isset($_POST['commentbtn']))
 	$total = $commenter->execute();
 	$commenter->closeCursor();
 }
+if (isset($_POST['del_com']))
+				{
+					$Num = $_POST['del_com'];
+					$Del = $bdd->prepare("CALL SupprimerCommentaires(?)");
+					$Del->bindParam(1,$Num);
+					$Del->execute();
+					##header("Location: index.php");
+				}
+				
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -151,8 +162,9 @@ if (isset($_POST['commentbtn']))
 					  <?php
 				if (isset($_POST['del_img']))
 				{
-					$Del = $bdd->prepare("CALL SupprimerPhotos(?)");
-					$Del->bindParam(1,$_SESSION['username']);
+					$Num = $_POST['del_img'];
+					$Del = $bdd->prepare("CALL SupprimerPhotosNum(?)");
+					$Del->bindParam(1,$Num);
 					$Del->execute();
 					header("Location: index.php");
 				}
@@ -160,8 +172,11 @@ if (isset($_POST['commentbtn']))
 				
 				
 				<form method="post" action="gestimage.php?num=".$id>
-				<?php if($user == $_SESSION['username']) :?>
-				<button class="infos" type="submit" name="del_img">SupprimerImage</button>
+				<?php
+				$Al = strtoupper($user); 
+				$Upper = strtoupper($_SESSION['username']);
+				if($Al == $Upper || $Upper == "ADMIN") :?>
+				<button value="<?php echo $id ?>" class="infos" type="submit" name="del_img">SupprimerImage</button>
 				<?php endif ?>
 				</form>
 				
@@ -176,22 +191,30 @@ if (isset($_POST['commentbtn']))
 						  </form>
 						  
 						  
-		  
+		  <form method="post" action="<?php echo $url1 ?>">
         <?php
             // Afficher les commentaires
             $getcomments->execute();
             while($c = $getcomments->fetch())
             {
 				?>
-				
-				
+
              <h3 class="infos"> Commentaire de <?php echo $c[4] ?></h3>
              <h3 class="infos"><?php echo $c[0] ?></h3>
              <h3 class="infos"> Publier le <?php echo $c[5] ?></h3>
+			 			<?php
+				$Al = strtoupper($user); 
+				$Upper = strtoupper($_SESSION['username']);
+				$Up = strtoupper($c[4]);
+				if($Al == $Upper || $Upper == "ADMIN" || $Up == $Upper) :?>
+				<button value="<?php echo $c[1] ?>" class="infos" type="submit" name="del_com">Supprimer Commentaire</button>
+				<?php endif ?>
 			 <?php
+			 
            }
 		   $getcomments->closeCursor();
           ?>   
+		  </form>
 		  <div id="respond">
 		  </div>
 						  
@@ -201,7 +224,7 @@ if (isset($_POST['commentbtn']))
         </div>
       </div>
   </body>
-<?php include 'footer.php' ?>
+  <?php include 'footer.php' ?>
 <script>
 </script>
 </html>
