@@ -188,4 +188,5 @@ tr:nth-child(even) {
   </div>
 </div>
 </body>
+<?php include 'footer.php' ?>
 </html>

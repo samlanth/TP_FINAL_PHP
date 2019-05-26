@@ -201,6 +201,7 @@ if (isset($_POST['commentbtn']))
         </div>
       </div>
   </body>
+<?php include 'footer.php' ?>
 <script>
 </script>
 </html>

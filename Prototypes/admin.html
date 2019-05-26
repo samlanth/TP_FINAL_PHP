@@ -1,0 +1,112 @@
+<html>
+<style>
+
+.photosIMG{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  border-bottom: 2px solid grey;
+}
+
+  #logo{
+    width: 70%;
+    height:40px;
+  }
+
+  .infos{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:50%;
+    margin-top: 2%;
+  }
+
+  .header{
+    height:50px;
+    background-color: rgb(29, 33, 41);
+    padding-top: 5px;
+  }
+
+  .main{
+    background-color: #e9ebee
+  }
+
+  .photos{
+    background-color: white;
+   }
+
+   #profilPic{
+     display: block;
+     margin-left: auto;
+     margin-right: auto;
+     width: 50%;
+   }
+  .grid-template{
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+  }
+  select{
+
+		 text-align: center;
+  }
+  fieldset{
+  border: 1px solid rgb(255,232,57);
+  
+  margin:auto;
+}
+  
+</style>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+<div class="cachecache">
+  <div class="grid-template">
+    <div class="header">
+    <img src="Images/Logo.png" id="logo">
+    </div>
+    <div class="header">
+    </div>
+    <div class="header">
+    </div>
+  </div>
+  <div class="grid-template">
+    <div class="main">
+    </div>
+    <div>
+      <div>
+        <!--
+        <img src="Images/Profil.jpg" id="profilPic">
+        <button class="infos"><span class="glyphicon glyphicon-open"></span></button>  -->
+        <h1 class="infos" align="middle">Admin</h1>
+		<fieldset>
+        <form action="" align="middle">
+		  <input type="radio" name="gender" value="Pseudonyme"> Pseudonyme
+		  <input type="radio" name="gender" value="Nom"> Nom
+		  <input type="radio" name="gender" value="Prenom"> Prenom
+		  <input type="radio" name="gender" value="Tous" checked> Tous
+		</form>
+		<input placeholder="Recherche..." class="infos">
+		<button class="infos">Chercher</button>
+		<select class="infos" name="sometext" align="middle" multiple>
+			<option>samtropcool</option>
+			<option>boosta</option>
+			<option>mario</option>
+			<option>ilestincroyable</option>
+
+		</select>
+		<button class="infos">Supprimer</button>
+		<button class="infos">Nouveau Mot de Passe</button>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		</fieldset>
+        
+        
+      </div>
+    </div>
+    <div class="main">
+    </div>
+  </div>
+</div>
+</body>
+</html>

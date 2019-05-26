@@ -1,0 +1,75 @@
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<style>
+
+  #logo{
+    width: 70%;
+    height:40px;
+    padding-left:10px;
+  }
+  #profilPic{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+  .infos{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:30%;
+    margin-top: 2%;
+  }
+
+  #desc{
+    height: 100px;
+  }
+
+  .header{
+    height:50px;
+    background-color: rgb(29, 33, 41);
+    padding-top: 5px;
+  }
+
+  .main{
+    background-color: #e9ebee
+  }
+
+  .photos{
+    background-color: white;
+   }
+
+  .grid-template{
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+  }
+</style>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+  <div class="grid-template">
+    <div class="header">
+    <img src="Images/Logo.png" id="logo">
+    </div>
+    <div class="header">
+    </div>
+    <div class="header">
+    </div>
+  </div>
+  <div class="grid-template">
+    <div class="main">
+    </div>
+    <div>
+        <img src="Images/Add.jpg" id="profilPic">
+        <button class="infos"><span class="glyphicon glyphicon-open"></span></button>
+        <input placeholder="Titre" class="infos">
+        <textarea class="infos" id="desc" placeholder="Decription" style="resize:none" ></textarea>
+        <button class="infos">Ajouter la photo!</button>
+    </div>
+    <div class="main">
+    </div>
+  </div>
+</body>
+</html>
