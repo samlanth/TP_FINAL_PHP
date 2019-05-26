@@ -3,8 +3,23 @@
 	
 	$bdd = new PDO('mysql:host=167.114.152.54;dbname=dbequipe13;charset=utf8', 'equipe13', 'u2ea2e47');
 	$mailErr = $PasswordErr = "";
-	$mail = $_SESSION['courriel'];
 	$name =  $_SESSION['username'];
+	
+	$get = $bdd->prepare("CALL GetUserDetails(?)",array(PDO::ATTR_CURSOR, PDO::CURSOR_FWDONLY));
+			
+			$get->bindParam(1,$name);
+			$tot = $get->execute();
+			while ($d = $get->fetch())
+			{
+				$_SESSION['courriel'] = $d[0];
+				$_SESSION['pass'] = $d[1];
+			}
+			$get->closeCursor();
+	
+	
+	
+	$mail = $_SESSION['courriel'];
+	
 	$password = $_SESSION['pass'];
 	
 
@@ -72,7 +87,15 @@
 </form> 
 <form method="post" action="profil.php">
 <p class="infos">
+<?php 
+if(isset($_COOKIE["authToken"])) { ?>
+<input type="checkbox" name="remember" checked>Rester Connecter</input>
+<?php } else { ?>
 <input type="checkbox" name="remember">Rester Connecter</input>
+<?php } ?>
+
+
+<!-- <input type="checkbox" name="remember">Rester Connecter</input> -->
 </p>
 <input class="infos" type="submit" name="Oui" value="Oui"></input>
 </form>

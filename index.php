@@ -15,6 +15,7 @@
 	if(isset($_COOKIE["authToken"]))
 	{
 		$_SESSION['username'] = $_COOKIE["authToken"];
+		$_SESSION['Connecter'] = "true";
 	}
 	else
 	{
@@ -143,6 +144,7 @@
 	  
     </div>
     <div class="header">
+	
 	<?php if ($co == "true") { ?>
 	<p style="color:white;font-size:25px; padding-left:85px; float:left"> <a class="active" href="login.php">Logout</p></a>
 	<?php } else { ?>
