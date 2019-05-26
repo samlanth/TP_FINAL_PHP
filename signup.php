@@ -80,8 +80,12 @@
 <html>
 <head>
 <style>
-.error {
-	color: #FF0000;
+#error {
+    color: #FF0000;
+}
+
+.main{
+    min-height: 800px;
 }
 </style>
 	<title>Inscription</title>
@@ -90,7 +94,7 @@
 	<link rel="stylesheet" type="text/css" href="style_signup.css">
 </head>
 <body>
-<div class="cachecache">
+<div>
    <div class="grid-template">
     <div class="header">
     <img src="Images/Logo.png" id="logo">
@@ -116,27 +120,27 @@
 	  <form method="post" action="signup.php">
 	  
 		  <input class="infos" placeholder="Nom" type="text" name="nom">
-		  <span class="error">* <?php echo $nomErr;?></span>
+		  <span  class="infos" id="error"><?php echo '* ' . $nomErr;?></span>
 		  <br>
 		  
 		  <input  class="infos" placeholder="Prenom" type="text" name="prenom">
-		  <span class="error">* <?php echo $prenomErr;?></span>
+		  <span class="infos" id="error"> <?php echo '* ' . $prenomErr;?></span>
 		  <br>
 		 
 		  <input  class="infos" placeholder="Username" type="text" name="username">
-		  <span class="error">* <?php echo $usernameErr;?></span>
+		  <span class="infos" id="error"> <?php echo '* ' .$usernameErr;?></span>
 		  <br>
 		  
 		  <input class="infos" placeholder="Password" type="password" name="password">
-		  <span class="error">* <?php echo $passwordErr;?></span>
+		  <span class="infos" id="error"> <?php echo '* ' . $passwordErr;?></span>
 		  <br>
 		  
-		  <input  class="infos" placeholder="Confirmation" type="password" name="password2">
-		  <span class="error">* <?php echo $passwordErr;?></span>
+		  <input  class="infos" placeholder="Confirmation" type="password" name="password   2">
+		  <span class="infos" id="error"> <?php echo '* ' . $passwordErr;?></span>
 		  <br>
 		  
 		  <input  class="infos" placeholder="Email" type="text" name="email">
-		  <span class="error">* <?php echo $emailErr;?></span>
+		  <span class="infos" id="error"> <?php echo '* ' . $emailErr;?></span>
 		  <br>
 
 		  <button class="infos" type="submit" name="register_btn">S'inscrire</button><br>
