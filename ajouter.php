@@ -127,7 +127,7 @@
     </div>
     <div class="header">
 	<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="index.php">Index</p></a>
-	<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php">Logout</p></a>
+	<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php?link">Logout</p></a>
     </div>
   </div>
   <div class="grid-template">

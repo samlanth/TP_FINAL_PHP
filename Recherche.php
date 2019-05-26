@@ -131,8 +131,9 @@ else
 	  
     </div>
     <div class="header">
+	<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="index.php">Index</p></a>
 	<?php if ($co == "true") { ?>
-	<p style="color:white;font-size:25px; padding-left:85px; float:left"> <a class="active" href="login.php">Logout</p></a>
+	<p style="color:white;font-size:25px; padding-left:85px; float:left"> <a class="active" href="login.php?link">Logout</p></a>
 	<?php } else { ?>
 	
 	<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php">Login</p></a>
@@ -153,7 +154,6 @@ else
 			$getsearch = $bdd->prepare("CALL RechercherImages2(?)");
 			$getsearch->bindParam(1,$selected_val);
 			$tot = $getsearch->execute();
-			
 				while ($d = $getsearch->fetch())
 				{
 					$get1 = $bdd->prepare("CALL GetComm(?)");
@@ -177,6 +177,7 @@ else
 				$_SESSION['t'] = $Titre;
 				$getsearch->closeCursor();
 				}	
+			
 			
 			?>
 		<?php 
@@ -234,6 +235,7 @@ else
 			$get1->closeCursor();
 			}
 			}
+			
 		?>
 		
       </div>

@@ -135,18 +135,18 @@
 	<?php if ($ad == "true") { ?>
 	  	  <p style="color:white;font-size:25px; padding-left:20px; float:right"> <a class="active" href="admin.php">Administrator</p></a>
 		  <?php } ?>
-	</form>
- 
+	
+	
 
 
 
 	  
-	 <form method="post" action="login.php?Logout">
+	  
     </div>
     <div class="header">
 	
 	<?php if ($co == "true") { ?>
-	<p style="color:white;font-size:25px; padding-left:85px; float:left"> <a class="active" href="login.php?Logout"> <button value="Logout" class="infos" type="submit" name="Logout">Logout</button></a> </p></a>
+	<p style="color:white;font-size:25px; padding-left:85px; float:left"> <a class="active" href="login.php?link">Logout</p></a>
 	<?php } else { ?>
 	
 	<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php">Login</p></a>

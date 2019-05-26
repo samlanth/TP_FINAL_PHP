@@ -6,12 +6,19 @@
 		$bdd = new PDO('mysql:host=167.114.152.54;dbname=dbequipe13;charset=utf8', 'equipe13', 'u2ea2e47');
 		$usernameErr = $passwordErr = "";
 		
+		
+		if (isset($_GET['link']))
+		{
+			setcookie("authToken",'',-1);
+			unset($_SESSION['username']);
+		}
+	/*
 		if (isset($_POST['Logout']))
-	{
-		$logged = $_POST['Logout'];
-		unset($_SESSION['username']);
-		setcookie("authToken", "", time()-3600);
-	}
+		{
+			$logged = $_POST['Logout'];
+			unset($_SESSION['username']);
+			setcookie("authToken", "", time()-3600);
+		} */
 		if (isset($_POST['login_btn']))
 		{
 			
