@@ -49,50 +49,42 @@
   <h3 class="infos">Mot de passe:</h3>
   <input class="infos" type="password" name="MDP" value=<?php echo $_SESSION['pass']; ?>>
   
-  <h3 class="infos">Rappeller Log in </h3>
-  <p class="infos">
-<input type="checkbox" name="remember">Rester Connecter</input>
-</p>
+
   <input class="infos" type="submit" name="Modifier" value="Modifier"></input>
   <?php
-			if(isset($_POST['Modifier'])){
-				/*if (isset($_POST['remember']))
-				{
-					$_SESSION['username'] = $user;
-					$token = hash('sha256',$_SESSION['username'] . time());
-					setcookie("authToken", $token, time()+60*60*24);
-					
-					$EMAIL = $_POST['EMAIL'];
-					$MDP = $_POST['MDP'];
-					$getModifier = $bdd->prepare("CALL Modifier(?,?,?)");
-					$getModifier->bindParam(1,$name);
-					$getModifier->bindParam(2,$MDP);
-					$getModifier->bindParam(3,$EMAIL);
-					$tot = $getModifier->execute();
-					$getModifier->closeCursor();
-					$_SESSION['courriel'] = $EMAIL;
-					$_SESSION['pass'] = $MDP;
-					header("Location: profil.php");
-				}
-				*/
+			if(isset($_POST['Modifier']))
+			{
 				$EMAIL = $_POST['EMAIL'];
-					$MDP = $_POST['MDP'];
-					$getModifier = $bdd->prepare("CALL Modifier(?,?,?)");
-					$getModifier->bindParam(1,$name);
-					$getModifier->bindParam(2,$MDP);
-					$getModifier->bindParam(3,$EMAIL);
-					$tot = $getModifier->execute();
-					$getModifier->closeCursor();
-					$_SESSION['courriel'] = $EMAIL;
-					$_SESSION['pass'] = $MDP;
-					header("Location: profil.php");
-			
+				$MDP = $_POST['MDP'];
+				$getModifier = $bdd->prepare("CALL Modifier(?,?,?)");
+				$getModifier->bindParam(1,$name);
+				$getModifier->bindParam(2,$MDP);
+				$getModifier->bindParam(3,$EMAIL);
+				$tot = $getModifier->execute();
+				$getModifier->closeCursor();
+				$_SESSION['courriel'] = $EMAIL;
+				$_SESSION['pass'] = $MDP;
+				
+				header("Location: profil.php");
 			}
 			?>
 	
 </form> 
-
-  
+<form method="post" action="profil.php">
+<p class="infos">
+<input type="checkbox" name="remember">Rester Connecter</input>
+</p>
+<input class="infos" type="submit" name="Oui" value="Oui"></input>
+</form>
+<?php
+		if (isset($_POST['remember']))
+		{
+			//$_SESSION['username'] = $user;
+			$token = hash('sha256',$_SESSION['username'] . time(),"/");
+			setcookie("authToken", $_SESSION['username'], time()+60*60*24);
+			header("Location: profil.php");
+		}
+?>
 
 </div>
 

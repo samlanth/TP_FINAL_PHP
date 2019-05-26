@@ -123,8 +123,11 @@
     <img src="Images/Logo.png" id="logo">
     </div>
     <div class="header">
+	<p style="color:white;font-size:25px; padding-left:50px; float:right"> <a class="active" href="profil.php"><?php echo $_SESSION['username']; ?></p></a>
     </div>
     <div class="header">
+	<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="index.php">Index</p></a>
+	<p style="color:white;font-size:25px; padding-left:50px; float:left"> <a class="active" href="login.php">Logout</p></a>
     </div>
   </div>
   <div class="grid-template">

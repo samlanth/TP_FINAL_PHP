@@ -2,38 +2,50 @@
 	session_start();
 	$bdd = new PDO('mysql:host=167.114.152.54;dbname=dbequipe13;charset=utf8', 'equipe13', 'u2ea2e47');
 
-				if (isset($_POST['del_btn']))
-				{
-					$Num = $_POST['del_btn'];
-					echo $Num;
-					$Del = $bdd->prepare("CALL SupprimerPhotosNum(?)");
-					$Del->bindParam(1,$Num);
-					$Del->execute();
-					header("Location: index.php");
-				}
+	if (isset($_POST['del_btn']))
+	{
+		$Num = $_POST['del_btn'];
+		echo $Num;
+		$Del = $bdd->prepare("CALL SupprimerPhotosNum(?)");
+		$Del->bindParam(1,$Num);
+		$Del->execute();
+		header("Location: index.php");
+	}
 
+	if(isset($_COOKIE["authToken"]))
+	{
+		$_SESSION['username'] = $_COOKIE["authToken"];
+	}
+	else
+	{
+	}
 
-if (isset($_SESSION['Connecter']))
-{
-    $co = $_SESSION['Connecter'];
-}
-else
-{
-	$_SESSION['Connecter'] = "false";
-	$co = "false";
-}
-if (isset($_SESSION['Admin']))
-{
-    $ad = $_SESSION['Admin'];
-}
-else
-{
-	$_SESSION['Admin'] = "false";
-	$ad = "false";
-}
-
-	//$co = $_SESSION['Connecter'];
-	//$ad = $_SESSION['Admin'];
+	if (isset($_SESSION['Connecter']))
+	{
+		$co = $_SESSION['Connecter'];
+	}
+	else
+	{
+		$_SESSION['Connecter'] = "false";
+		$co = "false";
+	}
+	if (isset($_SESSION['Admin']))
+	{
+		$ad = $_SESSION['Admin'];
+	}
+	else
+	{
+		$_SESSION['Admin'] = "false";
+		$ad = "false";
+	}
+	if (isset($_SESSION['username']))
+	{
+		
+	}
+	else
+	{
+		$_SESSION['username'] = null;
+	}
 
 	
 	$gettest = $bdd->prepare("CALL GetAllPhotos()");

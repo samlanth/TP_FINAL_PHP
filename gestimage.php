@@ -29,14 +29,14 @@ while ($donnees = $infos->fetch())
 		$url = $donnees[3];
 		$user = $donnees[4];
 		if (isset($_SESSION['username']))
-{
-    $currentUser = $_SESSION['username']; 
-}
-else
-{
-	$_SESSION['username'] = "false";
-	$currentUser = $_SESSION['username'];
-}
+		{
+			$currentUser = $_SESSION['username']; 
+		}
+		else
+		{
+			$_SESSION['username'] = "false";
+			$currentUser = $_SESSION['username'];
+		}
 		$currentUser = $_SESSION['username']; 
 		
 	}
