@@ -135,7 +135,7 @@
 		  <span class="infos" id="error"> <?php echo '* ' . $passwordErr;?></span>
 		  <br>
 		  
-		  <input  class="infos" placeholder="Confirmation" type="password" name="password   2">
+		  <input  class="infos" placeholder="Confirmation" type="password" name="password2">
 		  <span class="infos" id="error"> <?php echo '* ' . $passwordErr;?></span>
 		  <br>
 		  
