@@ -1,6 +1,17 @@
 <?php
 	session_start();
-	
+	$bdd = new PDO('mysql:host=167.114.152.54;dbname=dbequipe13;charset=utf8', 'equipe13', 'u2ea2e47');
+
+				if (isset($_POST['del_btn']))
+				{
+					$Num = $_POST['del_btn'];
+					echo $Num;
+					$Del = $bdd->prepare("CALL SupprimerPhotosNum(?)");
+					$Del->bindParam(1,$Num);
+					$Del->execute();
+					header("Location: index.php");
+				}
+
 
 if (isset($_SESSION['Connecter']))
 {
@@ -23,7 +34,7 @@ else
 
 	//$co = $_SESSION['Connecter'];
 	//$ad = $_SESSION['Admin'];
-	$bdd = new PDO('mysql:host=167.114.152.54;dbname=dbequipe13;charset=utf8', 'equipe13', 'u2ea2e47');
+
 	$get2 = $bdd->prepare("CALL GetComm(?)");
 	$get2->bindParam(1,$B);
 	$B = 1;
@@ -156,20 +167,15 @@ else
 				$_SESSION['t'] = $Titre;
 				?>
 				
-				<?php
-				if (isset($_POST['del_btn']))
-				{
-					$Del = $bdd->prepare("CALL SupprimerPhotos(?)");
-					$Del->bindParam(1,$_SESSION['username']);
-					$Del->execute();
-					header("Location: index.php");
-				}
-				?>
+
 				
 				
 				<form method="post" action="index.php">
-				<?php if($Alias == $_SESSION['username']) :?>
-				<button class="infos" type="submit" name="del_btn">SupprimerImage</button>
+				<?php 
+				$Al = strtoupper($Alias); 
+				$Upper = strtoupper($_SESSION['username']);
+				if($Al == $Upper || $Upper == "ADMIN") :?>
+				<button  value="<?php echo $Numero ?>" class="infos" type="submit" name="del_btn">SupprimerImage <?php echo $Numero ?></button>
 				<?php endif ?>
 				</form>
 				
