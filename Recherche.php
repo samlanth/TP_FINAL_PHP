@@ -146,30 +146,41 @@ else
     </div>
     <div>
       <div class="photos">
-		<?php 
-			$get = $bdd->prepare("CALL GetAllPhotos()");
-
-
-
-			$tot = $get->execute();
-			while ($d = $get->fetch())
-			{
-				$get1 = $bdd->prepare("CALL GetComm(?)");
-				$get1->bindParam(1,$Numero);
-				$Numero = $d[0];
-				
-				$Titre = $d[1];
-				$Description = $d[2];
-				$Url = $d[3];
-				$Alias = $d[4];
-				$Date = $d[5];
-				
-				$NbCom = $get1->execute();
-				while($i = $get1->fetch())
+	  <?php
+			if(isset($_POST['Recherche'])){
+			if (!empty($_POST['Search'])) {
+			$selected_val = $_POST['Search'];
+			$getsearch = $bdd->prepare("CALL RechercherImages2(?)");
+			$getsearch->bindParam(1,$selected_val);
+			$tot = $getsearch->execute();
+			
+				while ($d = $getsearch->fetch())
 				{
-					$NbCom = $i[0];
-					
-				}
+					$get1 = $bdd->prepare("CALL GetComm(?)");
+					$get1->bindParam(1,$Numero);
+					$Numero = $d[0];
+					$Titre = $d[1];
+					$Description = $d[2];
+					$Url = $d[3];
+					$Alias = $d[4];
+					$Date = $d[5];
+					$NbCom = $get1->execute();
+					while($i = $get1->fetch())
+					{
+						$NbCom = $i[0];
+						
+					}
+				$_SESSION['nume'] = $Numero;
+				$_SESSION['u'] = $Url;
+				$_SESSION['a'] = $Alias;
+				$_SESSION['d'] = $Description;
+				$_SESSION['t'] = $Titre;
+				$getsearch->closeCursor();
+				}	
+			
+			?>
+		<?php 
+			
 
 				$_SESSION['nume'] = $Numero;
 				$_SESSION['u'] = $Url;
@@ -219,9 +230,10 @@ else
 				
 				
 			<?php
-			}
+			
 			$get1->closeCursor();
-			$get->closeCursor();
+			}
+			}
 		?>
 		
       </div>
