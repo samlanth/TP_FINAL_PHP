@@ -101,8 +101,10 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    <!-- width: 50%; -->
     border-bottom: 2px solid grey;
+	height=150px;
+	width=200px;
   }
   .grid-template{
     display: grid;
@@ -212,7 +214,7 @@
 				<h6 align="middle"><?php echo $Titre ?><h6/>
 				
 				<a href="gestimage.php?num=<?php echo $Numero ?>">
-				<img src= "Images/<?php echo $Url ?>" height="150" width="200" class="photosIMG">
+				<img src= "Images/<?php echo $Url ?>" height="150px" width="200px" class="photosIMG">
 				</a>
 				
 				<!--

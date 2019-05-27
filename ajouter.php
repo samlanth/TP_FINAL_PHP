@@ -139,9 +139,9 @@
 		<input type="file" name="file" class="infos">
 		<!-- <button type="submit" name="submit" class="infos">Upload photo</button> -->
 
-		<input placeholder="Titre" class="infos" name="titre">
+		<input placeholder="Titre" class="infos" name="titre" maxlength="25">
 		
-        <textarea class="infos" id="desc" placeholder="Decription" style="resize:none" name="description" ></textarea>
+        <textarea class="infos" id="desc" placeholder="Decription" style="resize:none" name="description" maxlength="150" ></textarea>
 		
         <button class="infos" type ="submit" name="addpic">Ajouter la photo!</button> 
 		</form>
