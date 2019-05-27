@@ -102,8 +102,10 @@ else
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    <!-- width: 50%; -->
     border-bottom: 2px solid grey;
+	height=150px;
+	width=200px;
   }
   .grid-template{
     display: grid;
