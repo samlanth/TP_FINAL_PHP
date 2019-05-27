@@ -127,7 +127,10 @@ if (isset($_POST['del_com']))
 	width:100%;
 	border: 1px solid black;
 	border-radius: 5px;
-	  text-align: center;
+	  text-align: left;
+line-height: 1.5em;
+height: 3em;
+overflow: hidden;
   }
 </style>
 <head>
@@ -197,7 +200,7 @@ if (isset($_POST['del_com']))
 						  
 						  
 						  <form method="post" action="gestimage.php?num=<?php echo $id ?>">
-						  <textarea class="comm" name="comment" placeholder="Commentaire" cols="40" rows="6" maxlength="150" ></textarea>
+						  <textarea class="infos" name="comment" placeholder="Commentaire" cols="40" rows="6" maxlength="150" ></textarea>
 						  <input class="infos"type="submit" value="comment" name="commentbtn" <?php if ($_SESSION['Connecter'] != "true"){ ?> disabled <?php   }?>>
 						  </form>
 						  
