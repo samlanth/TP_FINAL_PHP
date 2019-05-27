@@ -59,8 +59,14 @@
 			
 	$get2 = $bdd->prepare("CALL GetComm(?)");
 	$get2->bindParam(1,$B);
-	$B = $NuC;
-	$NbComa = $get2->execute();
+		$isTouch = isset($NuC);
+		if ($isTouch == null)
+		{
+			$NuC = 0;
+		}
+		$B = $NuC;
+		$NbComa = $get2->execute();
+	
 				
 	while($a = $get2->fetch())
 	{
@@ -168,11 +174,14 @@
 
 
 			$tot = $get->execute();
+			
 			while ($d = $get->fetch())
 			{
 				$get1 = $bdd->prepare("CALL GetComm(?)");
 				$get1->bindParam(1,$Numero);
 				$Numero = $d[0];
+				
+				
 				
 				$Titre = $d[1];
 				$Description = $d[2];
@@ -232,11 +241,13 @@
 				<?php  }?>
 				<br>
 
-				
-				
+				<?php
+				$get1->closeCursor();
+				?>
 			<?php
 			}
-			$get1->closeCursor();
+			
+			//$get1->closeCursor();
 			$get->closeCursor();
 		?>
 		
@@ -245,12 +256,6 @@
     <div class="main">
     </div>
   </div>
-  <script>
-document.getElementById("date").innerHTML = Date();
-document.getElementById("date2").innerHTML = Date();
-document.getElementById("date3").innerHTML = Date();
-document.getElementById("date4").innerHTML = Date();
-</script>
 </body>
 <?php include 'footer.php' ?>
 </html>
