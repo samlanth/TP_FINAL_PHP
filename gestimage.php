@@ -102,6 +102,7 @@ if (isset($_POST['del_com']))
     <!-- width: 40%; -->
 	height=800px;
 	width=600px;
+	
   }
   .grid-template{
     display: grid;
@@ -123,10 +124,10 @@ if (isset($_POST['del_com']))
   .comm{
 	margin-right: auto;
 	display: block;
-	width:50%;
+	width:100%;
 	border: 1px solid black;
 	border-radius: 5px;
-	line-height: 1.4em;
+	  text-align: center;
   }
 </style>
 <head>
@@ -190,13 +191,13 @@ if (isset($_POST['del_com']))
 				<?php endif ?>
 				</form>
 				
-						  <h3 class="infos" align="middle">Photo de <?php echo $user ?></h3>
-						  <h3 class="infos" align="middle"><?php echo $titre ?></h3>
+						  <h3 class="comm" align="middle">Photo de <?php echo $user ?></h3>
+						  <h3 class="comm" align="middle"><?php echo $titre ?></h3>
 						  <img src="Images/<?php echo $url ?>" height="800px" width="600px" class="photosIMG">
 						  
 						  
 						  <form method="post" action="gestimage.php?num=<?php echo $id ?>">
-						  <textarea class="infos" name="comment" placeholder="Commentaire" cols="40" rows="6" maxlength="150" ></textarea>
+						  <textarea class="comm" name="comment" placeholder="Commentaire" cols="40" rows="6" maxlength="150" ></textarea>
 						  <input class="infos"type="submit" value="comment" name="commentbtn" <?php if ($_SESSION['Connecter'] != "true"){ ?> disabled <?php   }?>>
 						  </form>
 						  
