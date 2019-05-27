@@ -54,6 +54,7 @@ else
 		$NbComTest = $a[0];
 	}
 	$get2->closeCursor();
+	$Entrer = 'false';
 ?>
 <html>
 <style>
@@ -156,6 +157,7 @@ else
 			$tot = $getsearch->execute();
 				while ($d = $getsearch->fetch())
 				{
+					$Entrer = 'true';
 					$get1 = $bdd->prepare("CALL GetComm(?)");
 					$get1->bindParam(1,$Numero);
 					$Numero = $d[0];
@@ -178,10 +180,9 @@ else
 				$getsearch->closeCursor();
 				}	
 			
-			
 			?>
 		<?php 
-			
+			if($Entrer == 'true'){
 
 				$_SESSION['nume'] = $Numero;
 				$_SESSION['u'] = $Url;
@@ -233,6 +234,7 @@ else
 			<?php
 			
 			$get1->closeCursor();
+			}
 			}
 			}
 			
