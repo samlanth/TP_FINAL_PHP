@@ -38,20 +38,33 @@ else
 	
 	$gettest = $bdd->prepare("CALL GetAllPhotos()");
 	$tota = $gettest->execute();
+				if($gettest->rowCount()) {
+
 			while ($de = $gettest->fetch())
 			{
 				$NuC = $de[0];
 				$gettest->closeCursor();
 			}
+				}
+				else
+				{
+					
+				}
 			
 	$get2 = $bdd->prepare("CALL GetComm(?)");
 	$get2->bindParam(1,$B);
+	if($gettest->rowCount()) {
 	$B = $NuC;
 	$NbComa = $get2->execute();
 				
 	while($a = $get2->fetch())
 	{
 		$NbComTest = $a[0];
+	}
+	}
+	else
+	{
+		
 	}
 	$get2->closeCursor();
 	$Entrer = 'false';

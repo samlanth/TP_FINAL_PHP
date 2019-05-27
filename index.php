@@ -174,7 +174,7 @@
 
 
 			$tot = $get->execute();
-			
+			if($get->rowCount()) {
 			while ($d = $get->fetch())
 			{
 				$get1 = $bdd->prepare("CALL GetComm(?)");
@@ -245,6 +245,10 @@
 				$get1->closeCursor();
 				?>
 			<?php
+			}
+			}
+			else
+			{
 			}
 			
 			//$get1->closeCursor();
